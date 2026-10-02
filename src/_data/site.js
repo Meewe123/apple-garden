@@ -9,5 +9,4 @@ export default {
   lang: "ru",
   locale: "ru_RU",
   repository: "https://github.com/Meewe123/apple-garden",
-  buildYear: new Date().getFullYear(),
 };
