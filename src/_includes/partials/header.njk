@@ -1,0 +1,27 @@
+<header class="site-header" data-site-header>
+  <div class="container site-header__bar">
+    <a class="wordmark" href="/">
+      {% include "partials/apple-mark.njk" %}
+      <span class="wordmark__name">{{ restaurant.name }}</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Разделы страницы">
+      <ul class="site-nav__list" role="list">
+        <li><a class="site-nav__link" href="/#kitchen">Кухня</a></li>
+        <li><a class="site-nav__link" href="/#garden">Сад и праздники</a></li>
+        <li><a class="site-nav__link" href="/#reviews">Отзывы</a></li>
+        <li><a class="site-nav__link" href="/#visit">Как добраться</a></li>
+      </ul>
+    </nav>
+
+    <a class="site-header__call" href="{{ links.tel }}">
+      <span class="site-header__call-short">Позвонить</span>
+      <span class="site-header__call-full">{{ restaurant.phone.display | nbsp }}</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="visually-hidden">Разделы страницы</span>
+      <span class="nav-toggle__icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>

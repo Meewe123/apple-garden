@@ -1,0 +1,46 @@
+{
+  "name": "apple-garden",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Концепт сайта семейного ресторана Apple Garden в Саларе (Ташкентская область)",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "preview": "node scripts/serve.mjs",
+    "lint": "eslint . && stylelint \"src/**/*.css\" && prettier --check .",
+    "lint:html": "html-validate \"_site/**/*.html\"",
+    "format": "prettier --write . && stylelint \"src/**/*.css\" --fix",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node --test \"tests/unit/**/*.test.js\"",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run lint:html",
+    "images": "node scripts/generate-images.mjs",
+    "screenshots": "node scripts/screenshots.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@axe-core/playwright": "^4.13.0",
+    "@eslint/js": "^10.0.1",
+    "@fontsource-variable/alegreya": "^5.3.0",
+    "@fontsource/alegreya-sans": "^5.3.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4",
+    "browserslist": "^4.29.3",
+    "eslint": "^10.11.0",
+    "globals": "^17.13.0",
+    "html-validate": "^11.16.1",
+    "lightningcss": "^1.33.0",
+    "prettier": "^3.9.9",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0",
+    "typescript": "^7.0.2"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}

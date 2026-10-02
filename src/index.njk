@@ -1,0 +1,223 @@
+---
+layout: layouts/base.njk
+title: Apple Garden — семейный ресторан с садом в Саларе
+ogTitle: Apple Garden, Салар
+description: Семейный ресторан с летней террасой в саду. Узбекская кухня, шашлык, детская зона, банкеты. Салар, Ташкентская область.
+---
+{%- from "macros/stars.njk" import stars -%}
+{%- set hours = restaurant.hours | hoursSummary -%}
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__intro">
+      <p class="hero__kicker">{{ restaurant.kind }} {{ restaurant.address.localityIn }}, {{ restaurant.address.region }}</p>
+      <h1 class="hero__title" id="hero-title">
+        <span class="hero__title-line">Apple</span>
+        <span class="hero__title-line hero__title-line--shifted">Garden</span>
+      </h1>
+      <p class="hero__lead">
+        Летняя терраса в&nbsp;саду, узбекская кухня и&nbsp;мясо на&nbsp;углях.
+        Место для семейного обеда, праздника или спокойного вечера за&nbsp;городом.
+      </p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="{{ links.tel }}">Позвонить и&nbsp;забронировать</a>
+        <a class="button button--secondary" href="#visit">Как добраться</a>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <p class="open-status" data-open-status>
+        <span class="open-status__dot" aria-hidden="true"></span>
+        <span data-open-status-text>{% for line in hours %}{{ line.days }}, <span class="nowrap">{{ line.time }}</span>{% if not loop.last %}; {% endif %}{% endfor %}</span>
+      </p>
+      <dl class="facts">
+        <div class="facts__row">
+          <dt>Часы</dt>
+          <dd>{% for line in hours %}{{ line.days }}, <span class="nowrap">{{ line.time }}</span>{% if not loop.last %}<br>{% endif %}{% endfor %}</dd>
+        </div>
+        <div class="facts__row">
+          <dt>Телефон</dt>
+          <dd><a href="{{ links.tel }}">{{ restaurant.phone.display | nbsp }}</a></dd>
+        </div>
+        <div class="facts__row">
+          <dt>Адрес</dt>
+          <dd>{{ restaurant.address.locality }}, {{ restaurant.address.region }}<br><a href="#visit">Plus code {{ restaurant.address.plusCode }}</a></dd>
+        </div>
+        {%- if restaurant.rating %}
+        <div class="facts__row">
+          <dt>Рейтинг</dt>
+          <dd><a href="#reviews">{{ restaurant.rating.value | decimalRu }} из {{ restaurant.rating.best }} в&nbsp;Google, {{ restaurant.rating.count | plural("отзыв", "отзыва", "отзывов") }}</a></dd>
+        </div>
+        {%- endif %}
+      </dl>
+    </div>
+  </div>
+
+  <div class="hero__orchard">
+    {% orchard { cols: 34, rows: 4, seed: 2014 } %}
+  </div>
+</section>
+
+<section class="section" id="kitchen" aria-labelledby="kitchen-title">
+  <div class="container split">
+    <div class="split__aside">
+      <h2 class="section-title" id="kitchen-title">Кухня</h2>
+      <p class="section-note">
+        Меню с&nbsp;ценами на&nbsp;сайте пока нет. Что готовят сегодня и&nbsp;сколько это стоит, подскажут по&nbsp;телефону.
+      </p>
+      <p><a class="text-link" href="{{ links.tel }}">{{ restaurant.phone.display | nbsp }}</a></p>
+    </div>
+
+    <ul class="menu-list split__main" role="list">
+      {%- for item in restaurant.kitchen %}
+      <li class="menu-list__item">
+        <h3 class="menu-list__title">{{ item.title }}</h3>
+        <p class="menu-list__text">{{ item.text }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--inverse" id="garden" aria-labelledby="garden-title">
+  <div class="container split">
+    <div class="split__aside">
+      <h2 class="section-title" id="garden-title">Сад и&nbsp;праздники</h2>
+      <p class="section-note">
+        {{ restaurant.name }} работает больше {{ restaurant.yearsOpen | plural("года", "лет", "лет") }}.
+        Сюда приезжают всей семьёй: пообедать на&nbsp;свежем воздухе, отметить праздник, собрать родных за&nbsp;одним столом.
+      </p>
+    </div>
+
+    <dl class="feature-list split__main">
+      {%- for feature in restaurant.features %}
+      <div class="feature-list__item">
+        <dt class="feature-list__title">{{ feature.title }}</dt>
+        <dd class="feature-list__text">{{ feature.text }}</dd>
+      </div>
+      {%- endfor %}
+    </dl>
+  </div>
+</section>
+
+<section class="section" id="reviews" aria-labelledby="reviews-title">
+  <div class="container split">
+    <div class="split__aside">
+      <h2 class="section-title" id="reviews-title">Отзывы в&nbsp;Google</h2>
+      {%- if restaurant.rating %}
+      <div class="rating">
+        <p class="rating__score">
+          <span class="rating__value">{{ restaurant.rating.value | decimalRu }}</span>
+          <span class="rating__best">из {{ restaurant.rating.best }}</span>
+        </p>
+        {{ stars(restaurant.rating.value, restaurant.rating.best, "rating") }}
+        <p class="rating__count">{{ restaurant.rating.count | plural("отзыв", "отзыва", "отзывов") }} в&nbsp;{{ restaurant.rating.source }}</p>
+      </div>
+      {%- endif %}
+      <p>
+        <a class="text-link" href="{{ links.googlePlace }}" target="_blank" rel="noopener">
+          Все отзывы в&nbsp;Google Maps<span class="visually-hidden"> (откроется в новой вкладке)</span>
+        </a>
+      </p>
+    </div>
+
+    <div class="split__main">
+      {%- if restaurant.reviews.length %}
+      <ul class="review-list" role="list">
+        {%- for review in restaurant.reviews %}
+        <li>
+          <figure class="review">
+            <blockquote class="review__text"><p>{{ review.text }}</p></blockquote>
+            <figcaption class="review__meta">
+              <span class="review__author">{{ review.author }}</span>
+              <span class="review__score">оценка {{ review.rating }} из 5</span>
+            </figcaption>
+          </figure>
+        </li>
+        {%- endfor %}
+      </ul>
+      <p class="fine-print">Цитаты приведены без правок, имена авторов сокращены.</p>
+      {%- else %}
+      <div class="empty-state">
+        <p class="empty-state__title">Здесь пока нет отзывов</p>
+        <p>Свежие отзывы гостей можно почитать или оставить в&nbsp;Google Maps.</p>
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--raised" id="visit" aria-labelledby="visit-title">
+  <div class="container visit">
+    <div class="visit__info">
+      <h2 class="section-title" id="visit-title">Как добраться</h2>
+      <address class="visit__address">
+        {{ restaurant.address.locality }}, {{ restaurant.address.region }}, {{ restaurant.address.country }}
+      </address>
+      <p class="visit__plus">
+        На&nbsp;картах место отмечено plus code <code class="code">{{ restaurant.address.plusCode }}</code>&nbsp;— это короткий код точки,
+        его понимает Google Maps. Для такси удобнее скопировать адрес целиком: в&nbsp;нём есть и&nbsp;координаты.
+      </p>
+
+      <div class="visit__actions">
+        <a class="button button--primary" href="{{ links.googleDirections }}" target="_blank" rel="noopener">
+          Маршрут в&nbsp;Google Maps<span class="visually-hidden"> (откроется в новой вкладке)</span>
+        </a>
+        <a class="button button--secondary" href="{{ links.yandexDirections }}" target="_blank" rel="noopener">
+          Маршрут в&nbsp;Яндекс Картах<span class="visually-hidden"> (откроется в новой вкладке)</span>
+        </a>
+      </div>
+      <div class="copy" data-copy>
+        <button class="button button--quiet" type="button" data-copy-button data-copy-text="{{ restaurant | addressForCopy }}">Скопировать адрес и&nbsp;координаты</button>
+        <p class="copy__status" role="status" data-copy-status></p>
+      </div>
+
+      <dl class="facts facts--plain">
+        <div class="facts__row">
+          <dt>Телефон</dt>
+          <dd><a href="{{ links.tel }}">{{ restaurant.phone.display | nbsp }}</a></dd>
+        </div>
+        <div class="facts__row">
+          <dt>Часы</dt>
+          <dd>
+            {% for line in hours %}{{ line.days }}, <span class="nowrap">{{ line.time }}</span>{% if not loop.last %}<br>{% endif %}{% endfor %}
+            <span class="open-status open-status--inline" data-open-status hidden>
+              <span class="open-status__dot" aria-hidden="true"></span>
+              <span data-open-status-text></span>
+            </span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="map" data-map data-map-src="{{ links.googleEmbed }}" data-map-title="{{ restaurant.name }} на карте Google">
+      <div class="map__placeholder" data-map-placeholder>
+        <div class="map__plan">
+          {% orchard { cols: 11, rows: 9, seed: 41, appleChance: 0, modifier: "map" } %}
+          <span class="map__pin" aria-hidden="true"></span>
+        </div>
+        <div class="map__body">
+          <p class="map__note">Карта Google загружается только по&nbsp;кнопке: так страница открывается быстрее и&nbsp;не&nbsp;передаёт ваши данные Google без спроса.</p>
+          <div class="map__actions">
+            <button class="button button--secondary" type="button" data-map-load>Показать карту</button>
+            <a class="text-link" href="{{ links.googlePlace }}" target="_blank" rel="noopener">Открыть в&nbsp;Google Maps<span class="visually-hidden"> (откроется в новой вкладке)</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="map__skeleton" data-map-skeleton hidden>
+        <span class="visually-hidden">Карта загружается…</span>
+      </div>
+      <div class="map__error" data-map-error role="alert" hidden>
+        <p class="map__error-title">Карта не загрузилась</p>
+        <p>Проверьте подключение к&nbsp;интернету или откройте место прямо в&nbsp;Google Maps.</p>
+        <div class="map__actions">
+          <button class="button button--secondary" type="button" data-map-retry>Попробовать ещё раз</button>
+          <a class="text-link" href="{{ links.googlePlace }}" target="_blank" rel="noopener">Открыть в&nbsp;Google Maps<span class="visually-hidden"> (откроется в новой вкладке)</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/json" id="hours-data">{{ { timeZone: restaurant.timeZone, hours: restaurant.hours } | jsonForScript | safe }}</script>
+<script type="application/ld+json">{{ restaurant | restaurantJsonLd({ imageUrl: site.url + "/assets/img/og.png", mapUrl: links.googlePlace }) | jsonForScript | safe }}</script>

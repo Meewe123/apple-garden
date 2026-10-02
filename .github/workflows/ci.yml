@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Lint, types, unit tests, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Lint (ESLint, Stylelint, Prettier)
+        run: npm run lint
+      - name: Type-check JSDoc
+        run: npm run typecheck
+      - name: Unit tests
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Validate HTML
+        run: npm run lint:html
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+  e2e:
+    name: Browser and accessibility tests (Chromium, Firefox, WebKit)
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run build
+      - run: npm run test:e2e
+        env:
+          ALL_BROWSERS: "1"
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
+
+  lighthouse:
+    name: Lighthouse (performance, a11y, SEO ≥ 90)
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx --yes @lhci/cli@0.15 autorun
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: lighthouse-report
+          path: .lighthouseci/
+          retention-days: 14

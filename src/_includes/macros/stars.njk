@@ -1,0 +1,12 @@
+{#- Rating as five stars, filled proportionally (3.6 of 5 fills 72%).
+    Decorative: the number itself is always printed next to it. -#}
+{% macro stars(value, best, id) -%}
+<svg class="stars" viewBox="0 0 {{ best * 24 }} 24" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="{{ id }}-star" d="M12 2.4L14.59 9.04L21.7 9.45L16.18 13.96L18 20.85L12 17L6 20.85L7.82 13.96L2.3 9.45L9.41 9.04Z"/>
+    <clipPath id="{{ id }}-fill"><rect width="{{ value | ratingPercent(best) }}" height="24"/></clipPath>
+  </defs>
+  <g class="stars__track">{% for i in range(0, best) %}<use href="#{{ id }}-star" x="{{ i * 24 }}"/>{% endfor %}</g>
+  <g class="stars__fill" clip-path="url(#{{ id }}-fill)">{% for i in range(0, best) %}<use href="#{{ id }}-star" x="{{ i * 24 }}"/>{% endfor %}</g>
+</svg>
+{%- endmacro %}

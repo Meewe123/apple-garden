@@ -1,0 +1,478 @@
+/* Shared components: buttons, links, header, navigation, footer. */
+
+/* Buttons */
+
+.button {
+  --button-bg: transparent;
+  --button-fg: var(--color-ink);
+  --button-border: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.625rem 1.25rem;
+  border: var(--border-thick) solid var(--button-border);
+  border-radius: var(--radius-control);
+  background: var(--button-bg);
+  color: var(--button-fg);
+  font-family: var(--font-text);
+  font-size: var(--step-0);
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button--primary {
+  --button-bg: var(--color-accent);
+  --button-fg: var(--color-on-accent);
+  --button-border: var(--color-accent);
+}
+
+.button--primary:hover {
+  --button-bg: var(--color-accent-strong);
+  --button-border: var(--color-accent-strong);
+}
+
+.button--secondary {
+  --button-border: var(--color-ink);
+}
+
+.button--secondary:hover {
+  --button-bg: var(--color-ink);
+  --button-fg: var(--color-paper);
+}
+
+.button--quiet {
+  min-height: 2.75rem;
+  padding-inline: 0;
+  border: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.button--quiet:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* A link that is the point of its paragraph: phone, "all reviews". */
+.text-link {
+  font-weight: 500;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: var(--border-thick);
+  text-underline-offset: 0.3em;
+}
+
+.text-link:hover {
+  color: var(--color-accent);
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-2xs);
+  left: var(--space-2xs);
+  z-index: 100;
+  padding: var(--space-xs) var(--space-s);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-weight: 500;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Header */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-paper);
+  border-bottom: var(--border-thin) solid var(--color-line);
+}
+
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs) var(--space-m);
+  min-height: var(--header-height);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-inline-end: auto;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.apple-mark {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+}
+
+.apple-mark__fruit {
+  fill: var(--color-accent);
+}
+
+.apple-mark__leaf {
+  fill: var(--color-ink);
+}
+
+.site-nav__list {
+  display: flex;
+  gap: var(--space-m);
+}
+
+.site-nav__link {
+  display: block;
+  padding-block: var(--space-2xs);
+  text-decoration: none;
+}
+
+.site-nav__link:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: var(--border-thick);
+}
+
+.site-header__call {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: var(--space-s);
+  border: var(--border-thick) solid var(--color-ink);
+  border-radius: var(--radius-control);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.site-header__call:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.site-header__call-full {
+  display: none;
+}
+
+.nav-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-inline-end: calc(var(--space-2xs) * -1);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-toggle__icon {
+  position: relative;
+  width: 1.375rem;
+  height: 0.75rem;
+}
+
+.nav-toggle__icon::before,
+.nav-toggle__icon::after {
+  position: absolute;
+  inset-inline: 0;
+  height: var(--border-thick);
+  background: currentcolor;
+  content: "";
+  transition:
+    top var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
+}
+
+.nav-toggle__icon::before {
+  top: 0;
+}
+
+.nav-toggle__icon::after {
+  top: calc(100% - var(--border-thick));
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::before {
+  top: calc(50% - 1px);
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::after {
+  top: calc(50% - 1px);
+  transform: rotate(-45deg);
+}
+
+@media (width < 60rem) {
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    display: none;
+    padding: 0 var(--gutter) var(--space-m);
+    background: var(--color-paper);
+    border-bottom: var(--border-thin) solid var(--color-line);
+    opacity: 1;
+    translate: 0 0;
+    transition:
+      opacity var(--duration) var(--ease-out),
+      translate var(--duration) var(--ease-out),
+      display var(--duration) allow-discrete;
+  }
+
+  .site-header[data-nav-open] .site-nav {
+    display: block;
+  }
+
+  @starting-style {
+    .site-header[data-nav-open] .site-nav {
+      opacity: 0;
+      translate: 0 -0.5rem;
+    }
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .site-nav__link {
+    padding-block: var(--space-xs);
+    border-bottom: var(--border-thin) solid var(--color-line);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+  }
+}
+
+@media (width >= 60rem) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-header__call-short {
+    display: none;
+  }
+
+  .site-header__call-full {
+    display: inline;
+  }
+}
+
+/* Without JavaScript there is no toggle: show the links as a row instead. */
+@media (scripting: none) {
+  .nav-toggle,
+  [data-copy],
+  [data-map-load] {
+    display: none;
+  }
+}
+
+@media (scripting: none) and (width < 60rem) {
+  .site-header {
+    position: static;
+  }
+
+  .site-header__bar {
+    flex-wrap: wrap;
+  }
+
+  .site-nav {
+    position: static;
+    display: block;
+    order: 3;
+    flex-basis: 100%;
+    padding: 0 0 var(--space-xs);
+    border: 0;
+  }
+
+  .site-nav__list {
+    flex-flow: row wrap;
+    gap: 0 var(--space-m);
+  }
+
+  .site-nav__link {
+    border: 0;
+    font-family: var(--font-text);
+    font-size: var(--step-0);
+  }
+}
+
+/* Live opening status: a dot plus text. Without JavaScript only the text shows. */
+
+.open-status {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2xs);
+  font-weight: 500;
+}
+
+.open-status__dot {
+  width: 0.625em;
+  height: 0.625em;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-ink-muted);
+}
+
+.open-status:not([data-state]) .open-status__dot {
+  display: none;
+}
+
+.open-status[data-state="open"] .open-status__dot {
+  background: var(--color-ok);
+  box-shadow: 0 0 0 0.2em color-mix(in srgb, var(--color-ok) 25%, transparent);
+}
+
+.open-status[data-state="closing-soon"] .open-status__dot {
+  background: var(--color-accent);
+}
+
+.open-status--inline {
+  margin-top: var(--space-3xs);
+}
+
+/* Label–value list: hours, phone, address. */
+
+.facts__row {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: var(--space-s);
+  padding-block: var(--space-xs);
+  border-top: var(--border-thin) solid var(--color-line);
+}
+
+.facts dt {
+  padding-top: 0.15em;
+  color: var(--color-ink-muted);
+  font-size: var(--step--1);
+}
+
+/* Section headings */
+
+.section-title {
+  font-size: var(--step-4);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+}
+
+.section-note {
+  max-width: 26rem;
+  color: var(--color-ink-muted);
+}
+
+.fine-print {
+  margin-top: var(--space-s);
+  color: var(--color-ink-muted);
+  font-size: var(--step--1);
+}
+
+.code {
+  padding: 0.05em 0.35em;
+  border: var(--border-thin) solid var(--color-line);
+  border-radius: var(--radius-control);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+/* The orchard plan: the site's only illustration. */
+
+.orchard {
+  width: 100%;
+  height: 100%;
+}
+
+.orchard__crowns {
+  fill: var(--color-tree);
+  stroke: var(--color-tree-line);
+  stroke-width: 1;
+}
+
+.orchard__trunks {
+  fill: var(--color-tree-line);
+}
+
+.orchard__apples {
+  fill: var(--color-accent);
+}
+
+.orchard__holes {
+  fill: none;
+  stroke: var(--color-ink-muted);
+  stroke-dasharray: 4 5;
+  stroke-width: 1.5;
+}
+
+/* Footer */
+
+.site-footer {
+  padding-block: var(--space-xl) var(--space-l);
+  border-top: var(--border-thin) solid var(--color-line);
+  color: var(--color-ink-muted);
+  font-size: var(--step--1);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-m) var(--gutter);
+}
+
+.site-footer__name {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+}
+
+.site-footer__note {
+  max-width: var(--measure);
+}
+
+.site-footer a {
+  color: var(--color-ink);
+}
+
+@media (width >= 52rem) {
+  .site-footer__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .site-footer__brand {
+    grid-column: 1 / span 3;
+  }
+
+  .site-footer__contacts {
+    grid-column: 4 / span 3;
+  }
+
+  .site-footer__note {
+    grid-column: 8 / -1;
+  }
+}

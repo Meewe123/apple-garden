@@ -1,0 +1,21 @@
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">{{ restaurant.name }}</p>
+      <p>{{ restaurant.kind }}, {{ restaurant.address.locality }}</p>
+    </div>
+
+    <ul class="site-footer__contacts" role="list">
+      <li><a href="{{ links.tel }}">{{ restaurant.phone.display | nbsp }}</a></li>
+      {%- for line in restaurant.hours | hoursSummary %}
+      <li>{{ line.days }}, <span class="nowrap">{{ line.time }}</span></li>
+      {%- endfor %}
+    </ul>
+
+    <p class="site-footer__note">
+      Неофициальный концепт-сайт, учебный проект. Ресторан его не заказывал.
+      Рейтинг и&nbsp;отзывы взяты из&nbsp;Google Maps; часы работы перед поездкой лучше уточнить по&nbsp;телефону.
+      <a href="{{ site.repository }}">Исходный код на GitHub</a>
+    </p>
+  </div>
+</footer>
