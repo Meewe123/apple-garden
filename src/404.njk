@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+permalink: /404.html
+title: Страница не найдена — Apple Garden
+description: Такой страницы на сайте Apple Garden нет.
+noindex: true
+eleventyExcludeFromCollections: true
+---
+<section class="not-found" aria-labelledby="not-found-title">
+  <div class="container not-found__grid">
+    <p class="not-found__code" aria-hidden="true">404</p>
+    <div class="not-found__text">
+      <h1 class="not-found__title" id="not-found-title">Такой страницы нет</h1>
+      <p>Возможно, ссылка устарела или в&nbsp;адресе опечатка. Часы работы, телефон и&nbsp;дорога&nbsp;— на&nbsp;главной.</p>
+      <div class="not-found__actions">
+        <a class="button button--primary" href="/">На главную</a>
+        <a class="button button--secondary" href="{{ links.tel }}">Позвонить</a>
+      </div>
+    </div>
+  </div>
+  <div class="not-found__orchard">
+    {% orchard { cols: 34, rows: 3, seed: 404, empty: [[1, 16], [1, 17]] } %}
+  </div>
+</section>

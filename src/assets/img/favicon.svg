@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .fruit { fill: #b03a2e; }
+    .leaf { fill: #1c2a1f; }
+    @media (prefers-color-scheme: dark) {
+      .fruit { fill: #e2725f; }
+      .leaf { fill: #c9d3b9; }
+    }
+  </style>
+  <path class="fruit" d="M16 10.2c-1.9-1.5-4.3-2-6.4-1.4C6.4 9.7 4.6 12.8 4.9 17c.4 5.6 4 10.6 7.4 10.6 1.4 0 2.2-.7 3.7-.7s2.3.7 3.7.7c3.4 0 7-5 7.4-10.6.3-4.2-1.5-7.3-4.7-8.2-2.1-.6-4.5-.1-6.4 1.4Z"/>
+  <path class="leaf" d="M16.6 9.1c-.2-3.6 2.3-6.4 6.2-6.6.2 3.7-2.3 6.4-6.2 6.6Z"/>
+</svg>
