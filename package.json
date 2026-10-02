@@ -11,12 +11,16 @@
   "scripts": {
     "dev": "eleventy --serve",
     "build": "eleventy",
-    "test": "node --test \"tests/unit/**/*.test.js\""
+    "test": "node --test \"tests/unit/**/*.test.js\"",
+    "test:e2e": "playwright test",
+    "preview": "node scripts/serve.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
+    "@axe-core/playwright": "^4.13.0",
     "@fontsource-variable/alegreya": "^5.3.0",
     "@fontsource/alegreya-sans": "^5.3.0",
+    "@playwright/test": "^1.63.0",
     "browserslist": "^4.29.3",
     "lightningcss": "^1.33.0"
   },
