@@ -1,0 +1,7 @@
+node_modules/
+_site/
+.env
+test-results/
+playwright-report/
+.lighthouseci/
+.DS_Store

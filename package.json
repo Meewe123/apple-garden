@@ -1,0 +1,25 @@
+{
+  "name": "apple-garden",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Концепт сайта семейного ресторана Apple Garden в Саларе (Ташкентская область)",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@fontsource-variable/alegreya": "^5.3.0",
+    "@fontsource/alegreya-sans": "^5.3.0",
+    "browserslist": "^4.29.3",
+    "lightningcss": "^1.33.0"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}
