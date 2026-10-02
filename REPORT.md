@@ -83,13 +83,11 @@
 
 ### 1. Влить изменения в основную ветку
 
-Вся работа лежит в ветке `claude/portfolio-project-audit-pbf3an`. Её нужно влить в `main`:
+Вся работа лежит в ветке `claude/portfolio-project-audit-pbf3an`, и для неё уже открыт pull request: https://github.com/Meewe123/apple-garden/pull/1.
 
-1. Откройте https://github.com/Meewe123/apple-garden.
-2. GitHub предложит **Compare & pull request** — нажмите.
-3. Нажмите **Create pull request**, дождитесь зелёных галочек проверок и нажмите **Merge pull request**.
-
-Могу создать pull request сам, если попросишь.
+1. Откройте эту ссылку.
+2. Дождитесь зелёных галочек проверок внизу страницы.
+3. Нажмите **Merge pull request**, затем **Confirm merge**.
 
 ### 2. Включить публикацию сайта (один раз)
 
