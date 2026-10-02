@@ -11,7 +11,17 @@ describe("orchard", () => {
 
   it("plants one tree per grid cell, minus the empty spots", () => {
     assert.equal(orchard({ cols: 10, rows: 3 }).trees, 30);
-    assert.equal(orchard({ cols: 10, rows: 3, empty: [[1, 4], [2, 9]] }).trees, 28);
+    assert.equal(
+      orchard({
+        cols: 10,
+        rows: 3,
+        empty: [
+          [1, 4],
+          [2, 9],
+        ],
+      }).trees,
+      28,
+    );
   });
 
   it("outlines empty spots instead of drawing trees", () => {

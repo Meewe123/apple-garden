@@ -37,7 +37,7 @@ description: Семейный ресторан с летней террасой 
         </div>
         <div class="facts__row">
           <dt>Телефон</dt>
-          <dd><a href="{{ links.tel }}">{{ restaurant.phone.display }}</a></dd>
+          <dd><a href="{{ links.tel }}">{{ restaurant.phone.display | nbsp }}</a></dd>
         </div>
         <div class="facts__row">
           <dt>Адрес</dt>
@@ -65,7 +65,7 @@ description: Семейный ресторан с летней террасой 
       <p class="section-note">
         Меню с&nbsp;ценами на&nbsp;сайте пока нет. Что готовят сегодня и&nbsp;сколько это стоит, подскажут по&nbsp;телефону.
       </p>
-      <p><a class="text-link" href="{{ links.tel }}">{{ restaurant.phone.display }}</a></p>
+      <p><a class="text-link" href="{{ links.tel }}">{{ restaurant.phone.display | nbsp }}</a></p>
     </div>
 
     <ul class="menu-list split__main" role="list">
@@ -175,7 +175,7 @@ description: Семейный ресторан с летней террасой 
       <dl class="facts facts--plain">
         <div class="facts__row">
           <dt>Телефон</dt>
-          <dd><a href="{{ links.tel }}">{{ restaurant.phone.display }}</a></dd>
+          <dd><a href="{{ links.tel }}">{{ restaurant.phone.display | nbsp }}</a></dd>
         </div>
         <div class="facts__row">
           <dt>Часы</dt>

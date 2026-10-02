@@ -71,6 +71,8 @@ export default function (config) {
   config.addFilter("restaurantJsonLd", restaurantJsonLd);
   config.addFilter("ratingPercent", (value, best) => `${Math.round((value / best) * 1000) / 10}%`);
   config.addFilter("decimalRu", (value) => String(value).replace(".", ","));
+  // Phone numbers must not break across lines.
+  config.addFilter("nbsp", (value) => String(value).replaceAll(" ", "\u00a0"));
   config.addShortcode("orchard", (options = {}) => orchard(options).svg);
 
   config.setServerOptions({ port: 8080, showVersion: false });

@@ -25,7 +25,12 @@ function setUpMap(root, doc) {
   const error = root.querySelector("[data-map-error]");
   const loadButton = root.querySelector("[data-map-load]");
   const retryButton = root.querySelector("[data-map-retry]");
-  if (!src || !(placeholder instanceof HTMLElement) || !(skeleton instanceof HTMLElement) || !(error instanceof HTMLElement)) {
+  if (
+    !src ||
+    !(placeholder instanceof HTMLElement) ||
+    !(skeleton instanceof HTMLElement) ||
+    !(error instanceof HTMLElement)
+  ) {
     return;
   }
 

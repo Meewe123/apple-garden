@@ -16,7 +16,7 @@
 
     <a class="site-header__call" href="{{ links.tel }}">
       <span class="site-header__call-short">Позвонить</span>
-      <span class="site-header__call-full">{{ restaurant.phone.display }}</span>
+      <span class="site-header__call-full">{{ restaurant.phone.display | nbsp }}</span>
     </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>

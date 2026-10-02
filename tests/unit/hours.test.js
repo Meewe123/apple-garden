@@ -87,15 +87,30 @@ describe("getOpenStatus — daily 09:00–23:00", () => {
   });
 
   it("is closed exactly at the closing time and opens tomorrow", () => {
-    assert.deepEqual(status("2026-10-05T23:00:00"), { state: "closed", opensAt: "09:00", inDays: 1, weekday: 2 });
+    assert.deepEqual(status("2026-10-05T23:00:00"), {
+      state: "closed",
+      opensAt: "09:00",
+      inDays: 1,
+      weekday: 2,
+    });
   });
 
   it("is closed early in the morning and opens later today", () => {
-    assert.deepEqual(status("2026-10-05T07:15:00"), { state: "closed", opensAt: "09:00", inDays: 0, weekday: 1 });
+    assert.deepEqual(status("2026-10-05T07:15:00"), {
+      state: "closed",
+      opensAt: "09:00",
+      inDays: 0,
+      weekday: 1,
+    });
   });
 
   it("wraps from Sunday night to Monday morning", () => {
-    assert.deepEqual(status("2026-10-11T23:30:00"), { state: "closed", opensAt: "09:00", inDays: 1, weekday: 1 });
+    assert.deepEqual(status("2026-10-11T23:30:00"), {
+      state: "closed",
+      opensAt: "09:00",
+      inDays: 1,
+      weekday: 1,
+    });
   });
 });
 

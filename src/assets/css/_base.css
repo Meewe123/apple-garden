@@ -12,7 +12,6 @@
 
 html {
   scrollbar-gutter: stable;
-  -webkit-text-size-adjust: none;
   text-size-adjust: none;
   scroll-padding-top: calc(var(--header-height) + var(--space-s));
 }
@@ -78,7 +77,9 @@ a {
   color: inherit;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
-  transition: text-decoration-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  transition:
+    text-decoration-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 a:hover {

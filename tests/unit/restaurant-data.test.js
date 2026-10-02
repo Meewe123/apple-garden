@@ -18,7 +18,10 @@ describe("validateRestaurant", () => {
 
   it("rejects a phone number in the wrong format", () => {
     const problems = validateRestaurant(withChange((d) => (d.phone.e164 = "99 440 02 02")));
-    assert.ok(problems.some((p) => p.startsWith("phone.e164")), problems.join("\n"));
+    assert.ok(
+      problems.some((p) => p.startsWith("phone.e164")),
+      problems.join("\n"),
+    );
   });
 
   it("notices when the displayed and dialled numbers differ", () => {
@@ -37,9 +40,7 @@ describe("validateRestaurant", () => {
   });
 
   it("catches swapped latitude and longitude", () => {
-    const problems = validateRestaurant(
-      withChange((d) => ([d.geo.lat, d.geo.lng] = [d.geo.lng, d.geo.lat])),
-    );
+    const problems = validateRestaurant(withChange((d) => ([d.geo.lat, d.geo.lng] = [d.geo.lng, d.geo.lat])));
     assert.ok(problems.some((p) => p.startsWith("geo.lat")));
   });
 

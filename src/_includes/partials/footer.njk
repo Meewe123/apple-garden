@@ -6,7 +6,7 @@
     </div>
 
     <ul class="site-footer__contacts" role="list">
-      <li><a href="{{ links.tel }}">{{ restaurant.phone.display }}</a></li>
+      <li><a href="{{ links.tel }}">{{ restaurant.phone.display | nbsp }}</a></li>
       {%- for line in restaurant.hours | hoursSummary %}
       <li>{{ line.days }}, <span class="nowrap">{{ line.time }}</span></li>
       {%- endfor %}

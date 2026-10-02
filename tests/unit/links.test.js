@@ -42,7 +42,10 @@ describe("addressForCopy", () => {
 });
 
 describe("restaurantJsonLd", () => {
-  const data = restaurantJsonLd(restaurant, { imageUrl: "https://example.com/og.png", mapUrl: "https://maps" });
+  const data = restaurantJsonLd(restaurant, {
+    imageUrl: "https://example.com/og.png",
+    mapUrl: "https://maps",
+  });
 
   it("describes a schema.org Restaurant", () => {
     assert.equal(data["@type"], "Restaurant");

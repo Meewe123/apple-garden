@@ -23,9 +23,9 @@ test.describe("home page", () => {
 
   test("has exactly one h1 and no skipped heading levels", async ({ page }) => {
     await page.goto("./");
-    const levels = await page.locator("h1, h2, h3, h4, h5, h6").evaluateAll((els) =>
-      els.map((el) => Number(el.tagName[1])),
-    );
+    const levels = await page
+      .locator("h1, h2, h3, h4, h5, h6")
+      .evaluateAll((els) => els.map((el) => Number(el.tagName[1])));
     expect(levels.filter((level) => level === 1)).toHaveLength(1);
     levels.reduce((previous, level) => {
       expect(level - previous, `h${previous} followed by h${level}`).toBeLessThanOrEqual(1);
@@ -49,9 +49,9 @@ test.describe("home page", () => {
 
   test("links that open a new tab are safe and announced", async ({ page }) => {
     await page.goto("./");
-    const links = await page.locator('a[target="_blank"]').evaluateAll((els) =>
-      els.map((a) => ({ rel: a.rel, text: a.textContent ?? "" })),
-    );
+    const links = await page
+      .locator('a[target="_blank"]')
+      .evaluateAll((els) => els.map((a) => ({ rel: a.rel, text: a.textContent ?? "" })));
     expect(links.length).toBeGreaterThan(0);
     for (const link of links) {
       expect(link.rel).toContain("noopener");
