@@ -32,8 +32,8 @@
   --color-skeleton-shine: #efe9db;
 
   /* Type */
-  --font-display: Alegreya, "Iowan Old Style", Georgia, serif;
-  --font-text: "Alegreya Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: Alegreya, "Alegreya fallback", Georgia, serif;
+  --font-text: "Alegreya Sans", "Alegreya Sans fallback", Arial, sans-serif;
   --step--1: clamp(0.875rem, 0.8505rem + 0.109vw, 0.9375rem);
   --step-0: clamp(1.0625rem, 1.0136rem + 0.217vw, 1.1875rem);
   --step-1: clamp(1.25rem, 1.1522rem + 0.435vw, 1.5rem);
