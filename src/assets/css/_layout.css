@@ -1,0 +1,68 @@
+/* Page frame: container, sections and the asymmetric 12-column split. */
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--page-max));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-3xl);
+}
+
+.section--raised {
+  background: var(--color-paper-raised);
+}
+
+/* A dark band. Re-points the tokens so components inside need no variants. */
+.section--inverse {
+  --color-ink: var(--color-on-inverse);
+  --color-ink-muted: var(--color-on-inverse-muted);
+  --color-line: var(--color-inverse-line);
+  --color-focus: var(--color-on-inverse);
+
+  background: var(--color-inverse);
+  color: var(--color-ink);
+}
+
+/*
+ * Heading and note on the left (4 columns), content on the right (7 columns),
+ * one empty column between them.
+ */
+.split {
+  display: grid;
+  gap: var(--space-l) var(--gutter);
+}
+
+.split__aside > * + * {
+  margin-top: var(--space-s);
+}
+
+@media (width >= 52rem) {
+  .split {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .split__aside {
+    grid-column: 1 / span 4;
+  }
+
+  .split__main {
+    grid-column: 6 / -1;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.nowrap {
+  white-space: nowrap;
+}

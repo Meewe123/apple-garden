@@ -1,0 +1,98 @@
+/*
+ * Design tokens. Every colour, size and duration used by the site lives here.
+ *
+ * Palette: warm paper, green-black ink, one accent — apple red.
+ * The greens are tints of the ink, used as surfaces, not as a second accent.
+ * Type: fluid scale from 360px to 1280px wide screens (ratio ≈ 1.2 → 1.25).
+ * Space: 4px base; the large steps grow with the screen.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* Colour — light */
+  --color-paper: #f4efe3;
+  --color-paper-raised: #ebe4d3;
+  --color-ink: #1c2a1f;
+  --color-ink-muted: #4c584e;
+  --color-line: #cdc8b8;
+  --color-line-strong: #1c2a1f;
+  --color-accent: #b03a2e;
+  --color-accent-strong: #8f2c22;
+  --color-on-accent: #f4efe3;
+  --color-ok: #2f6b3a;
+  --color-focus: #b03a2e;
+  --color-tree: #dfe2cc;
+  --color-tree-line: #a9b48f;
+  --color-inverse: #22372a;
+  --color-on-inverse: #f4efe3;
+  --color-on-inverse-muted: #c9d3b9;
+  --color-inverse-line: #3e5444;
+  --color-skeleton: #e1d9c6;
+  --color-skeleton-shine: #efe9db;
+
+  /* Type */
+  --font-display: Alegreya, "Iowan Old Style", Georgia, serif;
+  --font-text: "Alegreya Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --step--1: clamp(0.875rem, 0.8505rem + 0.109vw, 0.9375rem);
+  --step-0: clamp(1.0625rem, 1.0136rem + 0.217vw, 1.1875rem);
+  --step-1: clamp(1.25rem, 1.1522rem + 0.435vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.3288rem + 0.761vw, 1.9375rem);
+  --step-3: clamp(1.8125rem, 1.4946rem + 1.413vw, 2.625rem);
+  --step-4: clamp(2.25rem, 1.663rem + 2.609vw, 3.75rem);
+  --step-5: clamp(3.5rem, 2.0326rem + 6.522vw, 7.25rem);
+  --leading-tight: 1.05;
+  --leading-heading: 1.15;
+  --leading-body: 1.55;
+
+  /* Space */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: clamp(2rem, 1.8043rem + 0.87vw, 2.5rem);
+  --space-xl: clamp(2.5rem, 1.913rem + 2.609vw, 4rem);
+  --space-2xl: clamp(3.5rem, 2.5217rem + 4.348vw, 6rem);
+  --space-3xl: clamp(4.5rem, 2.7391rem + 7.826vw, 9rem);
+  --gutter: clamp(1rem, 0.413rem + 2.609vw, 2.5rem);
+
+  /* Layout */
+  --page-max: 78rem;
+  --measure: 36rem;
+  --header-height: 4rem;
+
+  /* Shape: panels are square like printed paper; only controls are softened. */
+  --radius-control: 0.25rem;
+  --border-thin: 1px;
+  --border-thick: 2px;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration: 220ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #121a14;
+    --color-paper-raised: #1a241c;
+    --color-ink: #e8e3d6;
+    --color-ink-muted: #a9b0a3;
+    --color-line: #2e3a30;
+    --color-line-strong: #e8e3d6;
+    --color-accent: #e2725f;
+    --color-accent-strong: #ec8c7b;
+    --color-on-accent: #121a14;
+    --color-ok: #7fb38a;
+    --color-focus: #e2725f;
+    --color-tree: #19251c;
+    --color-tree-line: #3a4d3e;
+    --color-inverse: #1d2e22;
+    --color-on-inverse: #e8e3d6;
+    --color-on-inverse-muted: #b6c0ab;
+    --color-inverse-line: #33463a;
+    --color-skeleton: #1d281f;
+    --color-skeleton-shine: #26332a;
+  }
+}
