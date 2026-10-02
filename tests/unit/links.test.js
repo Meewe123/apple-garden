@@ -25,6 +25,11 @@ describe("buildLinks", () => {
     assert.ok(!links.googlePlace.includes(" "));
   });
 
+  it("prefers a direct listing link when the data has one", () => {
+    const direct = "https://maps.app.goo.gl/example";
+    assert.equal(buildLinks({ ...restaurant, googleMapsUrl: direct }).googlePlace, direct);
+  });
+
   it("uses HTTPS everywhere", () => {
     for (const [name, href] of Object.entries(links)) {
       if (name !== "tel") assert.ok(href.startsWith("https://"), name);

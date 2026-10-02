@@ -15,6 +15,15 @@
 | ![Первый экран на телефоне](docs/screenshots/mobile-light.png) | ![Открытое меню разделов](docs/screenshots/mobile-menu.png) | ![Тёмная тема](docs/screenshots/mobile-dark.png) |
 
 <details>
+<summary>Вся страница целиком и тёмная тема на компьютере</summary>
+
+![Вся страница](docs/screenshots/desktop-full.png)
+
+![Тёмная тема на компьютере](docs/screenshots/desktop-dark.png)
+
+</details>
+
+<details>
 <summary>In English</summary>
 
 A concept website for Apple Garden, a family restaurant near Tashkent, Uzbekistan. It is a fast static page that answers what visitors actually come for: is it open right now, how to call, how to get there. Built with Eleventy from a single validated data file. Includes a live opening-hours status computed in the restaurant's time zone, a click-to-load map, light and dark themes, unit and browser tests with automated WCAG 2.2 AA checks, and Lighthouse CI. Unofficial: the restaurant did not commission it.
@@ -80,16 +89,16 @@ npm ci            # установить зависимости
 npm run dev       # сайт с автообновлением: http://localhost:8080/apple-garden/
 ```
 
-| Команда               | Что делает                                                                                         |
-| --------------------- | -------------------------------------------------------------------------------------------------- |
-| `npm run build`       | собирает сайт в `_site/`                                                                           |
-| `npm run preview`     | показывает собранный сайт так, как его отдаёт GitHub Pages: http://localhost:4173/apple-garden/    |
-| `npm test`            | юнит-тесты                                                                                         |
-| `npm run test:e2e`    | браузерные тесты и проверка доступности (перед первым запуском: `npx playwright install chromium`) |
-| `npm run check`       | линтеры, проверка типов, юнит-тесты, сборка и валидация HTML — то же, что в CI                     |
-| `npm run format`      | приводит код к единому стилю                                                                       |
-| `npm run images`      | перерисовывает превью для соцсетей и иконку                                                        |
-| `npm run screenshots` | обновляет скриншоты для этого README                                                               |
+| Команда               | Что делает                                                                                                                                                 |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run build`       | собирает сайт в `_site/`                                                                                                                                   |
+| `npm run preview`     | показывает собранный сайт так, как его отдаёт GitHub Pages: http://localhost:4173/apple-garden/                                                            |
+| `npm test`            | юнит-тесты                                                                                                                                                 |
+| `npm run test:e2e`    | браузерные тесты и проверка доступности в Chromium (перед первым запуском: `npx playwright install chromium`); с `ALL_BROWSERS=1` — ещё в Firefox и WebKit |
+| `npm run check`       | линтеры, проверка типов, юнит-тесты, сборка и валидация HTML — то же, что в CI                                                                             |
+| `npm run format`      | приводит код к единому стилю                                                                                                                               |
+| `npm run images`      | перерисовывает превью для соцсетей и иконку                                                                                                                |
+| `npm run screenshots` | обновляет скриншоты для этого README                                                                                                                       |
 
 Адрес сайта и путь задаются переменными `SITE_URL` и `PATH_PREFIX`, примеры — в [`.env.example`](.env.example). Секретов у проекта нет.
 
@@ -98,9 +107,9 @@ npm run dev       # сайт с автообновлением: http://localhost
 Каждый push проходит через [GitHub Actions](.github/workflows/ci.yml):
 
 1. ESLint, Stylelint, Prettier, проверка типов.
-2. 52 юнит-теста: часы работы и часовые пояса, проверка данных, ссылки на карты, склонения, экранирование JSON, генерация рисунка.
+2. 54 юнит-теста: часы работы и часовые пояса, проверка данных, ссылки на карты, склонения, экранирование JSON, генерация рисунка.
 3. Сборка, валидация HTML и `npm audit`.
-4. 60 браузерных тестов на ширине 1280 и 360 px. Среди них статус в разное время суток (и для посетителя из другого часового пояса), меню с клавиатуры, загрузка и ошибка карты, копирование адреса, работа с выключенным JavaScript и axe-проверки в светлой и тёмной темах.
+4. Браузерные тесты в Chromium, Firefox и WebKit (движок Safari) на ширине 1280 и 360 px. Среди них статус в разное время суток (и для посетителя из другого часового пояса), меню с клавиатуры, загрузка и ошибка карты, копирование адреса, работа с выключенным JavaScript и axe-проверки в светлой и тёмной темах.
 5. Lighthouse CI: сборка падает, если любая оценка ниже 90 (доступность — ниже 95).
 
 Последний локальный замер Lighthouse — 100 / 100 / 100 / 100 (производительность, доступность, лучшие практики, SEO) для мобильной и десктопной версий.

@@ -36,7 +36,7 @@ jobs:
         run: npm audit --audit-level=high
 
   e2e:
-    name: Browser and accessibility tests
+    name: Browser and accessibility tests (Chromium, Firefox, WebKit)
     needs: checks
     runs-on: ubuntu-latest
     steps:
@@ -46,9 +46,11 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run build
       - run: npm run test:e2e
+        env:
+          ALL_BROWSERS: "1"
       - uses: actions/upload-artifact@v7
         if: failure()
         with:

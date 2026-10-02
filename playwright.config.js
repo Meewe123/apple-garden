@@ -7,6 +7,10 @@ const PREFIX = "/apple-garden/";
 // without network access); otherwise Playwright's own browser is used.
 const executablePath = process.env.CHROMIUM_PATH;
 
+// Firefox and WebKit (Safari's engine) run in CI; locally they are opt-in,
+// since they need `npx playwright install firefox webkit` first.
+const allBrowsers = Boolean(process.env.ALL_BROWSERS);
+
 export default defineConfig({
   testDir: "tests/e2e",
   fullyParallel: true,
@@ -32,6 +36,18 @@ export default defineConfig({
         hasTouch: true,
       },
     },
+    ...(allBrowsers
+      ? [
+          {
+            name: "desktop-firefox",
+            use: { ...devices["Desktop Firefox"], viewport: { width: 1280, height: 800 } },
+          },
+          {
+            name: "mobile-webkit",
+            use: { ...devices["iPhone 13"], viewport: { width: 360, height: 740 } },
+          },
+        ]
+      : []),
   ],
   webServer: {
     command: `node scripts/serve.mjs --port ${PORT} --prefix ${PREFIX}`,

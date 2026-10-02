@@ -60,6 +60,15 @@ describe("validateRestaurant", () => {
     assert.ok(problems.some((p) => p.startsWith("reviews[0]")));
   });
 
+  it("accepts only Google Maps links as googleMapsUrl", () => {
+    assert.deepEqual(
+      validateRestaurant(withChange((d) => (d.googleMapsUrl = "https://maps.app.goo.gl/abc"))),
+      [],
+    );
+    const problems = validateRestaurant(withChange((d) => (d.googleMapsUrl = "http://example.com")));
+    assert.ok(problems.some((p) => p.startsWith("googleMapsUrl")));
+  });
+
   it("allows an empty review list (the page shows an empty state)", () => {
     assert.deepEqual(validateRestaurant(withChange((d) => (d.reviews = []))), []);
   });
