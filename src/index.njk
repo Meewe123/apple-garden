@@ -46,7 +46,7 @@ description: Семейный ресторан с летней террасой 
         {%- if restaurant.rating %}
         <div class="facts__row">
           <dt>Рейтинг</dt>
-          <dd><a href="#reviews">{{ restaurant.rating.value | decimalRu }} из {{ restaurant.rating.best }} в&nbsp;Google, {{ restaurant.rating.count }}&nbsp;отзывов</a></dd>
+          <dd><a href="#reviews">{{ restaurant.rating.value | decimalRu }} из {{ restaurant.rating.best }} в&nbsp;Google, {{ restaurant.rating.count | plural("отзыв", "отзыва", "отзывов") }}</a></dd>
         </div>
         {%- endif %}
       </dl>
@@ -84,7 +84,7 @@ description: Семейный ресторан с летней террасой 
     <div class="split__aside">
       <h2 class="section-title" id="garden-title">Сад и&nbsp;праздники</h2>
       <p class="section-note">
-        {{ restaurant.name }} работает больше {{ restaurant.yearsOpen }} лет.
+        {{ restaurant.name }} работает больше {{ restaurant.yearsOpen | plural("года", "лет", "лет") }}.
         Сюда приезжают всей семьёй: пообедать на&nbsp;свежем воздухе, отметить праздник, собрать родных за&nbsp;одним столом.
       </p>
     </div>
@@ -111,7 +111,7 @@ description: Семейный ресторан с летней террасой 
           <span class="rating__best">из {{ restaurant.rating.best }}</span>
         </p>
         {{ stars(restaurant.rating.value, restaurant.rating.best, "rating") }}
-        <p class="rating__count">{{ restaurant.rating.count }} отзывов в&nbsp;{{ restaurant.rating.source }}</p>
+        <p class="rating__count">{{ restaurant.rating.count | plural("отзыв", "отзыва", "отзывов") }} в&nbsp;{{ restaurant.rating.source }}</p>
       </div>
       {%- endif %}
       <p>

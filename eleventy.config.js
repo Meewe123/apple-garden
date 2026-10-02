@@ -7,6 +7,7 @@ import { browserslistToTargets, bundle } from "lightningcss";
 import { summarizeHours } from "./src/assets/js/lib/hours.js";
 import { addressForCopy, buildLinks } from "./lib/links.js";
 import { orchard } from "./lib/orchard.js";
+import { pluralRu } from "./lib/plural.js";
 import { jsonForScript, restaurantJsonLd } from "./lib/structured-data.js";
 import { validateRestaurant } from "./lib/validate-restaurant.js";
 
@@ -71,6 +72,7 @@ export default function (config) {
   config.addFilter("restaurantJsonLd", restaurantJsonLd);
   config.addFilter("ratingPercent", (value, best) => `${Math.round((value / best) * 1000) / 10}%`);
   config.addFilter("decimalRu", (value) => String(value).replace(".", ","));
+  config.addFilter("plural", (count, one, few, many) => `${count}\u00a0${pluralRu(count, [one, few, many])}`);
   // Phone numbers must not break across lines.
   config.addFilter("nbsp", (value) => String(value).replaceAll(" ", "\u00a0"));
   config.addShortcode("orchard", (options = {}) => orchard(options).svg);
