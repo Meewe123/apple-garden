@@ -76,6 +76,12 @@
   }
 
   .info-card {
+    grid-column: 8 / -1;
+  }
+}
+
+@media (width >= 75rem) {
+  .info-card {
     grid-column: 9 / -1;
   }
 }
