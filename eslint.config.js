@@ -22,7 +22,7 @@ export default [
   },
   {
     // Code passed to page.evaluate() runs in the browser.
-    files: ["tests/e2e/**/*.js"],
+    files: ["tests/e2e/**/*.js", "scripts/generate-images.mjs"],
     languageOptions: { globals: { ...globals.node, ...globals.browser } },
   },
 ];

@@ -18,7 +18,8 @@
     "typecheck": "tsc -p tsconfig.json",
     "test": "node --test \"tests/unit/**/*.test.js\"",
     "test:e2e": "playwright test",
-    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run lint:html"
+    "check": "npm run lint && npm run typecheck && npm test && npm run build && npm run lint:html",
+    "images": "node scripts/generate-images.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
